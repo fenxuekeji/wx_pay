@@ -47,7 +47,7 @@ module WxPay
         appid: options.delete(:appid) || WxPay.appid,
         partnerid: options.delete(:mch_id) || WxPay.mch_id,
         key: options.delete(:key) || WxPay.key,
-        package: 'Sign=WXPay',
+        package: options.delete(:package) || 'Sign=WXPay',
         timestamp: Time.now.to_i.to_s
       }.merge(params)
 
