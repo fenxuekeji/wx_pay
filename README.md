@@ -122,7 +122,7 @@ params = {
 }
 
 # call generate_app_pay_req
-r = WxPay::Service::generate_app_pay_req params
+r = WxPay::Service.generate_app_pay_req params
 # => {
 #      appid: 'wxd930ea5d5a258f4f',
 #      partnerid: '1900000109',
@@ -132,6 +132,27 @@ r = WxPay::Service::generate_app_pay_req params
 #      timestamp: '1398746574',
 #      sign: '7FFECB600D7157C5AA49810D2D8F28BC2811827B'
 #    }
+```
+
+#### pay request for JSAPI
+
+``` ruby
+# required fields
+params = {
+  prepayid: '1101000000140415649af9fc314aa427', # fetch by call invoke_unifiedorder with `trade_type` is `JSAPI`
+  noncestr: '1101000000140429eb40476f8896f4c9', # must same as given to invoke_unifiedorder
+}
+
+# call generate_js_pay_req
+r = WxPay::Service.generate_js_pay_req params
+# {
+#   "appId": "wx020c5c792c8537de",
+#   "package": "prepay_id=wx20160902211806a11ccee7a20956539837",
+#   "nonceStr": "2vS5AJUD7uyaa5h9",
+#   "timeStamp": "1472822286",
+#   "signType": "MD5",
+#   "paySign": "A52433CB75CA8D58B67B2BB45A79AA01"
+# }
 ```
 
 #### Notify Process
@@ -181,7 +202,7 @@ you can pass `appid`, `mch_id`, `key`, `apiclient_cert`, `apiclient_key` as a ha
 
 For example
 ```ruby
-WxPay::Service::generate_app_pay_req params, {appid: 'APPID', mch_id: 'MCH_ID', key: 'KEY'}
+WxPay::Service.generate_app_pay_req params, {appid: 'APPID', mch_id: 'MCH_ID', key: 'KEY'}
 ```
 
 ## Contributing
