@@ -67,7 +67,8 @@ module WxPay
         package: "prepay_id=#{params.delete(:prepayid)}",
         nonceStr: params.delete(:noncestr),
         timeStamp: Time.now.to_i.to_s,
-        signType: 'MD5'
+        signType: 'MD5',
+        key: options.delete(:key) || WxPay.key
       }.merge(params)
 
       params[:paySign] = WxPay::Sign.generate(params)
