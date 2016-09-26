@@ -3,7 +3,7 @@ require 'digest/md5'
 module WxPay
   module Sign
     def self.generate(params)
-      key = params.delete(:key)
+      key = params.delete('key') || params.delete(:key)
 
       query = params.sort.map do |k, v|
         "#{k}=#{v}" if v.to_s != ''
